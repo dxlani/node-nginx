@@ -16,11 +16,15 @@
       <form action="#" method="get">
           级别<input type="text" value="" name="level" id="level" ng-model="level"/> <br />
           关键词<input type="keyword" value="" name="keyword" id="keyword" ng-model="keyword" /> <br />
-          开始时间<input id="startTime" type="text" name="startTime" ng-model="startTime" ng-bind="startTime"/> <br>
-          结束时间<input id="endTime" type="text" name="endTime" ng-model="endTime"/> <br>
+          开始时间<input id="startTime" type="text" name="startTime" ng-model="startTime" /> <br>
+          开始时间<input id="startTime" type="text" name="startTime" ng-model="startTime" /> <br>
+          起始索引<input id="skip" type="text" name="skip" ng-model="skip" /> <br>
+          一页数量<input id="count" type="count" name="count" ng-model="count"/> <br>
       </form>
       <button id="btn1" ng-click="submit()">查询</button>
-      <p id="total" ng-show="total">共查询到{{total}}个数据</p>
+      <button id="btn2" ng-click="export()">导出</button>
+
+      <p id="total" ng-show="total">共查询到{{total}}个数据,当前页{{curcount}}个数据</p>
       <table width="100%" border="1" cellspacing="0" cellpadding="0">
         <tr align="center">
             <td width="4%">级别</td>
@@ -47,9 +51,7 @@
       timepicker:true,    //关闭时间选项
       hours12: false,  //24h
       yearEnd:2050,        //设置最大年份
-      todayButton:false,   //关闭选择今天按钮
-      validateOnBlur:false, //失去焦点时不校验时间
-    //   allowBlank: true
+      todayButton:false    //关闭选择今天按钮
 });
       </script>
   </body>
