@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myapp">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="jquery.js"></script>
+    <script src="angular.js"></script>
+    <script src="search.js"></script>
+    <link rel="stylesheet" type="text/css" href="jquery.datetimepicker.css"/ >
+    <script src="jquery.datetimepicker.full.js"></script>
+</head>
+<body ng-controller="myCtrl">
+    <h3>查询日志</h3>
+      <form action="#" method="get">
+          级别<input type="text" value="" name="level" id="level" ng-model="level"/> <br />
+          关键词<input type="keyword" value="" name="keyword" id="keyword" ng-model="keyword" /> <br />
+          开始时间<input id="startTime" type="text" name="startTime" ng-model="startTime" ng-bind="startTime"/> <br>
+          结束时间<input id="endTime" type="text" name="endTime" ng-model="endTime"/> <br>
+      </form>
+      <button id="btn1" ng-click="submit()">查询</button>
+      <p id="total" ng-show="total">共查询到{{total}}个数据</p>
+      <table width="100%" border="1" cellspacing="0" cellpadding="0">
+        <tr align="center">
+            <td width="4%">级别</td>
+            <td width="11%">时间</td>
+            <td width="20%">URL</td>
+            <td width="65%">日志</td>
+        </tr> 
+        <tr  ng-if="show" ng-repeat="log in list">
+                <td width="5%">{{log.level}}</td>
+                <td width="10%">{{log.time}}</td>
+                <td width="20%">{{log.url}}</td>
+                <td width="65%">{{log.msgs}}</td>
+        </tr> 
+        <tr ng-if="!show" align="center">
+            <td width="100%" colspan="4" >{{list}}</td>
+        </tr>
+      </table>
+      <script>
+
+      $.datetimepicker.setLocale('ch');//设置中文 
+      $('#startTime,#endTime').datetimepicker({
+      lang:"zh", //语言选择中文 注：旧版本 新版方法：$.datetimepicker.setLocale('ch');
+      format:"Y-m-d H:m:s",      //格式化日期
+      timepicker:true,    //关闭时间选项
+      hours12: false,  //24h
+      yearEnd:2050,        //设置最大年份
+      todayButton:false,   //关闭选择今天按钮
+      validateOnBlur:false, //失去焦点时不校验时间
+    //   allowBlank: true
+});
+      </script>
+  </body>
+</html>
